@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+        integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
+        integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+        crossorigin="anonymous"></script>
+        <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'footer.css' %}">
+    <title>
+
+        {% block title %}
+
+        {% endblock title %}
+    </title>
+    
+    {% block style %}
+   
+    {% endblock style %}
+        
+ 
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item  {% block homeactive %} {% endblock homeactive %}">
+                    <a class="nav-link" href="/">Главное <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item {% block aboutactive %} {% endblock aboutactive %}">
+                    <a class="nav-link" href="/about">О нас</a>
+                </li>
+                <li class="nav-item {% block contactactive %} {% endblock contactactive %}">
+                    <a class="nav-link" href="/contact">Обратная связь</a>
+                </li>
+                
+
+  
+
+  <div class="modal fade" id="Signup" tabindex="-1" role="dialog" aria-labelledby="Signupmodal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="SignupTitle">Регистрация</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="/signup/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="username">Никнейм</label>
+                  <input type="text" class="form-control" id="username" name="username" aria-describedby="name" placeholder="Введите ваш никнейм используя буквы" required>
+                </div>
+                <div class="form-group">
+                  <label for="name">Имя</label>
+                  <input type="text" class="form-control" id="fname" name="fname" aria-describedby="fname" placeholder="Выше Имя" required>
+                </div>
+                <div class="form-group">
+                  <label for="name">Фамилия</label>
+                  <input type="text" class="form-control" id="lname" name="lname" aria-describedby="lname" placeholder="Ваша Фамилия" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">E-mail</label>
+                  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="example@mail.ru" required>
+
+                </div>
+                <div class="form-group">
+                  <label for="phone">Номер телефона</label>
+                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Ваш номер телефона" aria-describedby="phone" required="False">
+                </div>
+                <div class="form-group">
+                  <label for="pass1">Ваш пароль</label>
+                  <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Ваш пароль (Мин. 6 символов)" required>
+                </div>
+                <div class="form-group">
+                  <label for="pass2">Повторите пароль</label>
+                  <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Повторите ваш пароль" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                  </div>
+              </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+ <!-- Login Modal -->
+ <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="loginTitle">Вход</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="/userlogin/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="loginusername">Никнейм</label>
+                  <input type="text" class="form-control" id="loginusername" name="loginusername" aria-describedby="name" placeholder="Ваш никнейм" required>
+                </div>
+                <div class="form-group">
+                  <label for="loginpassword">Пароль</label>
+                  <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Ваш пароль" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Войти</button>
+                  </div>
+              </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+            </ul>     
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav mr-auto mr-sm-2">
+            <li class="nav-item dropdown mr-4">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Здравстуйте, {{request.user}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/userlogout"><svg class="bi bi-box-arrow-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M11.646 11.354a.5.5 0 010-.708L14.293 8l-2.647-2.646a.5.5 0 01.708-.708l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708 0z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M4.5 8a.5.5 0 01.5-.5h9a.5.5 0 010 1H5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                    <path fill-rule="evenodd" d="M2 13.5A1.5 1.5 0 01.5 12V4A1.5 1.5 0 012 2.5h7A1.5 1.5 0 0110.5 4v1.5a.5.5 0 01-1 0V4a.5.5 0 00-.5-.5H2a.5.5 0 00-.5.5v8a.5.5 0 00.5.5h7a.5.5 0 00.5-.5v-1.5a.5.5 0 011 0V12A1.5 1.5 0 019 13.5H2z" clip-rule="evenodd"/>
+                  </svg>&nbsp; Выйти</a>
+                  <a class="dropdown-item" href="/faqs"><svg class="bi bi-question-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM6.57 6.033H5.25C5.22 4.147 6.68 3.5 8.006 3.5c1.397 0 2.673.73 2.673 2.24 0 1.08-.635 1.594-1.244 2.057-.737.559-1.01.768-1.01 1.486v.355H7.117l-.007-.463c-.038-.927.495-1.498 1.168-1.987.59-.444.965-.736.965-1.371 0-.825-.628-1.168-1.314-1.168-.901 0-1.358.603-1.358 1.384zm1.251 6.443c-.584 0-1.009-.394-1.009-.927 0-.552.425-.94 1.01-.94.609 0 1.028.388 1.028.94 0 .533-.42.927-1.029.927z" clip-rule="evenodd"/>
+                  </svg>&nbsp; FAQS</a>
+                  <!-- <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/work/notifications"><svg class="bi bi-bell-fill" width="0.9em" height="0.9em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 16a2 2 0 002-2H6a2 2 0 002 2zm.995-14.901a1 1 0 10-1.99 0A5.002 5.002 0 003 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                  </svg>&nbsp; Notifications</a>
+                </div> -->
+              </li>
+            </ul>
+                {% else %}
+            <!-- sign up Button trigger modal -->
+            <button type="button" class="btn btn-outline-success my-2 my-sm-0 ml-2" data-toggle="modal" data-target="#Signup"><svg class="bi bi-person-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+              </svg>
+                Зарегистрироваться
+              </button>
+              <!-- Login Button trigger modal -->
+              <button type="button" class="btn btn-outline-success my-2 my-sm-0 mx-2" data-toggle="modal" data-target="#login">
+                Войти
+              </button>
+
+              {% endif %}
+        </div>
+    </nav>
+
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>Сообщение: </strong> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+
+    {% block content %}
+
+    {% endblock content %}
+
+
+
+
+    {% block footer %}
+
+    {% endblock %}
+
+</body>
+
+</html>

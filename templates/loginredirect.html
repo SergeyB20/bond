@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %}
+    Redirect
+{% endblock title %}
+    
+
+{% block content %}
+<div class="container my-2">
+    <div class="jumbotron">
+        <h1 class="display-4">Уупс!</h1>
+        <p class="lead">Вы не можете посмотреть этот контект без регистрации</p>
+        <hr class="my-4">
+        <p>Пожалуйста, войдите для продолжения</p>
+        <form method="post">
+        <a class="btn btn-primary btn-lg" href="/userlogin/" data-toggle="tooltip" title="Home" type="submit">Сделать это!</a>
+    </form>
+      </div>
+</div>
+{% endblock content %}
